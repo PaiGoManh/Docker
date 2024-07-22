@@ -32,11 +32,6 @@ router.get('/thank-you', (req, res) => {
 });
 
 
-// router.get("certificate/:id",async (req, res) => {
-//   res.sendFile(path.join(__dirname, 'public', 'view.html'));
-  
-// });
-
 router.get('/certificate/:id', async (req, res) => {
     const { id } = req.params;
     console.log(`Fetching certificate with ID: ${id}`);

@@ -1,0 +1,31 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_kba
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_volume:/data/db
+
+  api:
+    image: kba_api
+    container_name: api_kba
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    build: 
+      context: Backend
+      dockerfile: ./dockerfile
+
+  ui:
+    image: kba_ui
+    container_name: ui_kba
+    ports:
+      - "5173:5173"
+    build: 
+      context: Frontend
+      dockerfile: ./dockerfile
+
+volumes:
+  mongo_volume:
